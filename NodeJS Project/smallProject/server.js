@@ -1,7 +1,7 @@
 
 const express = require('express');
 const app = express();
-const port =rocess.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 // for heroku const port = process.env.PORT || 5000
 //localhost:3000        /customer
 
