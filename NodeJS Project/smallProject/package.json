@@ -1,0 +1,22 @@
+{
+  "name": "snacksinavan",
+  "version": "1.0.0",
+  "description": "our snacks in a van",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "food"
+  ],
+  "author": "haoczhao",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
