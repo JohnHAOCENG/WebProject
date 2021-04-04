@@ -4,12 +4,12 @@ const Schema = mongoose.Schema;
 var userSchema = new Schema({
     name:{
         type: String,
-        requied: true,
+        required: true,
         default: "newUser"
     },
     email:{
         type: String,
-        requied: true,
+        required: true,
         default: "newEmail"
     }
 });
