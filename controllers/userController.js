@@ -1,5 +1,5 @@
 
-var User = require("../models/user");
+var User = require("../models/userModel");
 
 exports.userRegister = function(req,res){
     User.findOne({email: req.body.email}).then((user)=>{
@@ -20,4 +20,6 @@ exports.userRegister = function(req,res){
         }
     })
     // res.status(200).json({success: "true", message: "This is customer page"})
-}
+}   
+
+User.create
