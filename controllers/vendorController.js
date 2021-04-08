@@ -5,7 +5,7 @@ exports.vendorStatusPageGet =function(req, res){
 	res.write('<textarea name="Location" id="" cols="50" rows="1"></textarea>')
 	res.write('</br>')
 	res.write('<label for="status"> status </label>')
-	res.write('<input type="checkbox" name="status"> <br />')
+	res.write('<input type="checkbox" name="status:ready-for-orders"> <br />')
     res.write('<a href="/vendor/order"><input type="submit" value="Send"></a>')
 	res.end()
 }

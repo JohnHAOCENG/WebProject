@@ -11,6 +11,7 @@ mongoose.
 	connect(mongodb, { useNewUrlParser: true, useUnifiedTopology: true}).
 	then(()=>console.log("MongoDB Connected ..."));
 
+const User = require("./models/userModel")
 
 /* routers:  */
 /*customer main path: register, login, update(profile) */
@@ -20,14 +21,23 @@ const customerOrder = require("./routes/customerOrderRoute");
 /*vendor main path: park(location)AndsStatus, outstanding orders/orderDetails/fulfilled? */
 const vendor  = require("./routes/vendorRoute"); 
 
+const snack = require("./routes/snackRoute");
+
+
+/*test API eg */
 const user = require("./routes/userRoute");
+
+
+
 
 
 /* app:  */
 app.use('/customer', customer);
 app.use('/customer/order', customerOrder);
 app.use('/vendor',vendor);
+app.use('/snack',snack);
 
+/*test API eg */
 app.use('/user', user);
 
 
