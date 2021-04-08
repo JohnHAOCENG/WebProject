@@ -20,6 +20,14 @@ exports.addSnack = function(req,res){
             });
         }
     })
-}   
+}
+
+
+exports.getSnack = function(req,res){
+    Snack.find()
+        .then(snacks=>res.json(snacks))
+        .catch(err=>res.status(400).json('Error'+ err));
+}
+
 
 Snack.create

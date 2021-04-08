@@ -6,4 +6,6 @@ var snackController = require("../controllers/snackController");
 // post register 
 router.post('/addSnack',snackController.addSnack);
 
+router.get('/',snackController.getSnack);
+
 module.exports = router;
