@@ -7,6 +7,7 @@ const app = express();
 app.use(bodyParser.json());
 
 const mongodb = require('./config/keys').mongoURL;
+
 mongoose.
 	connect(mongodb, { useNewUrlParser: true, useUnifiedTopology: true}).
 	then(()=>console.log("MongoDB Connected ..."));
@@ -39,7 +40,6 @@ app.use('/snack',snack);
 
 /*test API eg */
 app.use('/user', user);
-
 
 
 
