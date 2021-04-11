@@ -32,7 +32,7 @@ exports.vendorRegister = function(req,res){
 }   
 
 exports.vendorParkPost = function(req,res){
-    Vendor.findById(req.param.id).then((vendor)=>{
+    Vendor.findById(req.params.id).then((vendor)=>{
         if(!vendor){
             res.status(409).json({error:"Vendor not exist!"})
         }else{
