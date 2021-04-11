@@ -23,7 +23,7 @@ const customerOrder = require("./routes/customerOrderRoute");
 const vendor  = require("./routes/vendorRoute"); 
 
 const snack = require("./routes/snackRoute");
-
+const order = require("./routes/orderRoute");
 
 /*test API eg */
 const user = require("./routes/userRoute");
@@ -37,6 +37,7 @@ app.use('/customer', customer);
 app.use('/customer/order', customerOrder);
 app.use('/vendor',vendor);
 app.use('/snack',snack);
+app.use('/order',order);
 
 /*test API eg */
 app.use('/user', user);

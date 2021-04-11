@@ -1,18 +1,60 @@
-exports.vendorStatusPageGet =function(req, res){
-	res.status(200)
-	res.write('<h1> Vendor status page </h1>')
-	res.write('<p> Please tell us where you van are </p>')
-	res.write('<textarea name="Location" id="" cols="50" rows="1"></textarea>')
-	res.write('</br>')
-	res.write('<label for="status"> status </label>')
-	res.write('<input type="checkbox" name="status:ready-for-orders"> <br />')
-    res.write('<a href="/vendor/order"><input type="submit" value="Send"></a>')
-	res.end()
-}
+const bcryptjs = require("bcryptjs");
 
-exports.vendorOutstandingOrderPageGet =function(req, res){
-	res.status(200)
-	res.write('<h1> Vendor outstanding order </h1>')
-	res.write('<p> write something here</p>')
-	res.end()
-}
+
+var Vendor = require("../models/vendorModel");
+
+exports.venodrRegister = function(req,res){
+    const{name,password} = req.body;
+    Vendor.findOne({name:name}).then((vendor)=>{
+        if(vendor){
+            res.status(409).json({error:"Vendor already registerd!"})
+        }else{
+            const newVendor = new Vendor({
+				name,
+                password,
+            })
+            bcryptjs.genSalt(10,(err,salt)=>{
+                bcryptjs.hash(newVendor.password,salt,(err,hash)=>{
+                    if(err) throw err;
+                    newVendor.password = hash;
+                    newVendor.save().then((vendor)=>{
+                        res.json({
+                            vendor:{
+                                name:vendor.name,
+                                password:vendor.password
+                            }
+                        })
+                    })
+                })
+            })
+        }
+    })
+}   
+
+exports.venodrParkPost = function(req,res){
+
+    Vendor.findById(req.param.id).then((vendor)=>{
+        if(!vendor){
+            res.status(409).json({error:"Vendor not exist!"})
+        }else{
+			Vendor.findByIdAndUpdate(
+				req.params.id,
+				{
+					textAddress:req.body.textAddress,
+					parked:req.body.parked,
+					location:{type:"Point", coordinates:req.body.location}
+				},
+				{new: true},
+				function(err, updateVendor){
+					if (err){
+						res.status(404).json({success:false,err:err})
+					}else{
+						res.status(200).json({success:true,updateVendor:updateVendor})
+					}
+				}
+			)
+        }
+    })
+}   
+
+Vendor.create

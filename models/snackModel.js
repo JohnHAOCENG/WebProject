@@ -1,11 +1,15 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-var snackSchema = new Schema({
+var SnackSchema = new Schema({
     snackName:{
         type: String,
         required: true,
         default: "newSnack"
+    },
+    photo:{
+        type:String,
+        required:true
     },
     price:{
         type: String,
@@ -20,4 +24,4 @@ var snackSchema = new Schema({
 });
 
 
-module.exports = mongoose.model("Snack",snackSchema);
+module.exports = mongoose.model("Snack",SnackSchema);

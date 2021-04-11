@@ -23,11 +23,23 @@ exports.addSnack = function(req,res){
 }
 
 
-exports.getSnack = function(req,res){
-    Snack.find()
-        .then(snacks=>res.json(snacks))
-        .catch(err=>res.status(400).json('Error'+ err));
+exports.getSnackMenu = function(req,res){
+    Snack.find().exec((err,snacks) =>{
+        if (err){
+            res.status(400).json({success:false,err:err})
+        }else{
+            res.status(200).json({success:true,snacks:snacks})
+        }
+    })
 }
-
+exports.getSnackDetail = function(req,res){
+    Snack.findById(req.params.id,function(err,snack){
+        if(snack){
+            res.status(200).json({success:true,snack:snack})
+        }else{
+            res.status(400).json({success:false,err:err})
+        }
+    })
+}
 
 Snack.create

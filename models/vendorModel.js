@@ -1,14 +1,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-var userSchema = new Schema({
-    givenName:{
+var VendorSchema = new Schema({
+    name:{
         type: String,
         // required: true,
-    },
-    familyName:{
-        type: String,
-        // require: true,
     },
     location:{
         type:{
@@ -19,15 +15,19 @@ var userSchema = new Schema({
             type:[Number]
         }
     },
-    email:{
-        type: String,
-        required: true,
-    },
     password:{
         type:String,
-        require:true
+        required:true
+    },
+    textAddress:{
+        type:String
+    },
+    parked:{
+        type:Boolean,
+        required:true,
+        default:false
     }
 });
 
 
-module.exports = mongoose.model("User",userSchema);
+module.exports = mongoose.model("Vendor",VendorSchema);
