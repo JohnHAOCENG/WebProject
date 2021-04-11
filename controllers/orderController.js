@@ -37,7 +37,7 @@ exports.orderUpdatePost = function(req,res){
 
 exports.orderCreatPost = function(req,res){
     const order = new Order({
-        customer:req.body.customer,
+        user:req.body.user,
         vendor:req.body.vendor,
         snacks:req.body.snacks
     })

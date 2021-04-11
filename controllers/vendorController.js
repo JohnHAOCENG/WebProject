@@ -3,11 +3,11 @@ const bcryptjs = require("bcryptjs");
 
 var Vendor = require("../models/vendorModel");
 
-exports.venodrRegister = function(req,res){
+exports.vendorRegister = function(req,res){
     const{name,password} = req.body;
     Vendor.findOne({name:name}).then((vendor)=>{
         if(vendor){
-            res.status(409).json({error:"Vendor already registerd!"})
+            res.status(409).json({error:"Vendor already registered!"})
         }else{
             const newVendor = new Vendor({
 				name,
@@ -31,8 +31,7 @@ exports.venodrRegister = function(req,res){
     })
 }   
 
-exports.venodrParkPost = function(req,res){
-
+exports.vendorParkPost = function(req,res){
     Vendor.findById(req.param.id).then((vendor)=>{
         if(!vendor){
             res.status(409).json({error:"Vendor not exist!"})

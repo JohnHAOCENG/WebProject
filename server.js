@@ -6,43 +6,31 @@ const port = process.env.PORT || 8080
 const app = express();
 app.use(bodyParser.json());
 
-const mongodb = require('./config/keys').mongoURL;
+const mongodb = require('./config/key').mongoURL;
 
 mongoose.
 	connect(mongodb, { useNewUrlParser: true, useUnifiedTopology: true}).
 	then(()=>console.log("MongoDB Connected ..."));
 
-const User = require("./models/userModel")
 
-/* routers:  */
-/*customer main path: register, login, update(profile) */
-const customer = require("./routes/customerRoute");
-/*customer order path: menu(snackDetails), createOrder, confirm, updateOrder, cancelOrder*/
-const customerOrder = require("./routes/customerOrderRoute");
-/*vendor main path: park(location)AndsStatus, outstanding orders/orderDetails/fulfilled? */
+
+
+const user = require("./routes/userRoute");
 const vendor  = require("./routes/vendorRoute"); 
-
 const snack = require("./routes/snackRoute");
 const order = require("./routes/orderRoute");
-
-/*test API eg */
-const user = require("./routes/userRoute");
-
-
 
 
 
 /* app:  */
-app.use('/customer', customer);
-app.use('/customer/order', customerOrder);
 app.use('/vendor',vendor);
 app.use('/snack',snack);
 app.use('/order',order);
 
+
+
 /*test API eg */
 app.use('/user', user);
-
-
 
 
 app.get('/', (req, res) => {
@@ -55,38 +43,6 @@ app.get('/', (req, res) => {
 	res.end('</br>')
 })
 
-
-app.get('/customer/order/ongoing', (req, res) => {
-	res.status(200)
-	// wait for you
-})
-
-
-/*------------------------------useless example------------------------------------- */
-app.get('/filter', (req, res) => {
-	res.status(200)
-	res.write('<h1> Food filter </h1>')
-	res.write('<p> User can see the food filter page. They enter their filter details and press a Submit button to send the details. </p>')
-	// post the filter
-	res.write('<form method="post" action="/filter">')
-
-	res.write('<label for="vegan"> vegan </label>')
-	res.write('<input type="checkbox" name="vegan"> <br />')
-
-	res.write('<label for="organic"> organic </label>')
-	res.write('<input type="checkbox" name="organic"> <br />')
-
-	res.write('<input type="submit" value="Send filter details">')
-	res.end('</form>')
-})
-
-app.post('/filter', (req, res) => { // POST - user's food filter data
-	res.status(200)
-	res.write('<h1> Filter details posted </h1>')
-	res.write('<p> The user has posted their filter details to the server. We should record details and forward the user to the home page, which is now filtered. They sent:</p>')
-	res.write(JSON.stringify(req.body))
-	res.end('<p> <a href="/">browse foods</a> </p>')
-})
 
 app.all('*', (req, res) => {  // 'default' route to catch invalid routes
 	res.status(404).send('<p>invalid request</p>')

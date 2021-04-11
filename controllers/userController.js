@@ -1,13 +1,11 @@
 const bcryptjs = require("bcryptjs");
-
-
 var User = require("../models/userModel");
 
 exports.userRegister = function(req,res){
     const{givenName,familyName,email,password} = req.body;
     User.findOne({email:email}).then((user)=>{
         if(user){
-            res.status(409).json({error:"Email already registerd!"})
+            res.status(409).json({error:"Email already registered!"})
         }else{
             const newUser = new User({
                 givenName,

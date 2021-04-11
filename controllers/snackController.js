@@ -32,6 +32,7 @@ exports.getSnackMenu = function(req,res){
         }
     })
 }
+
 exports.getSnackDetail = function(req,res){
     Snack.findById(req.params.id,function(err,snack){
         if(snack){

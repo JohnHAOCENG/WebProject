@@ -7,6 +7,7 @@ var snackController = require("../controllers/snackController");
 router.post('/addSnack',snackController.addSnack);
 
 router.get('/',snackController.getSnackMenu);
+
 router.get('/:id',snackController.getSnackDetail);
 
 module.exports = router;
