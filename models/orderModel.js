@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 var OrderSchema = new Schema({
     user:{
         type:Schema.Types.ObjectId,
-        ref:"User"
+        ref:'User'
     },
     vendor:{
         type:Schema.Types.ObjectId,
-        ref:"Vendor"
+        ref:'Vendor'
     },
     snacks:{
         type:Array,
@@ -16,7 +16,7 @@ var OrderSchema = new Schema({
     },
     status:{
         type:String,
-        default:"outstanding"
+        default:'outstanding'
     },
     ratings:{
         type:Number
@@ -24,7 +24,7 @@ var OrderSchema = new Schema({
     comment:{
         type:String
     }
-},{timestamp:true});
+},{timestamps:true});
 
 
 module.exports = mongoose.model("Order",OrderSchema);
