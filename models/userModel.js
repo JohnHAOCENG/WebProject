@@ -13,7 +13,7 @@ var userSchema = new Schema({
     location:{
         type:{
             type:String,
-            enmu: ['Point'],
+            enum: ['Point'],
         },
         coordinates:{
             type:[Number]
