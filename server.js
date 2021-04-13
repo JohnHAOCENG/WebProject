@@ -12,6 +12,9 @@ mongoose.
 	connect(mongodb, { useNewUrlParser: true, useUnifiedTopology: true}).
 	then(()=>console.log("MongoDB Connected ..."));
 
+// Make Mongoose use `findOneAndUpdate()`. Note that this option is `true`
+// by default, you need to set it to false.
+mongoose.set('useFindAndModify', false);
 
 
 
